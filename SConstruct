@@ -52,12 +52,12 @@ Help(opts.GenerateHelpText(env))
 
 conf = Configure(env)
 if "-DUNSAFE" in env["opt"]:
-    print "WARNING: compile with -DUNSAFE or high optimization only for production use"
+    print("WARNING: compile with -DUNSAFE or high optimization only for production use")
 
 if re.search(r'-O[234]',env["opt"]):
-    print "compiling with high optimization"
+    print("compiling with high optimization")
 else:
-    print "compiling for development (slower but safer)"
+    print("compiling for development (slower but safer)")
 
 assert conf.CheckLibWithHeader('png', 'png.h', 'C', 'png_byte;', 1),"please install: libpng12-dev"
 assert conf.CheckLibWithHeader('jpeg', 'jconfig.h', 'C', 'jpeg_std_error();', 1),"please install: libjpeg62-dev"    

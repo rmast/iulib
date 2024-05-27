@@ -27,6 +27,7 @@
 #define h_imgops___
 
 #include "colib/colib.h"
+#include "colib/narray.h"
 
 namespace iulib {
 
@@ -66,8 +67,10 @@ namespace iulib {
                          l * ((1.0-m) * s10 + m * s11));
     }
 
-    template<class T, class V>
-    void addscaled(colib::narray<T> &, colib::narray<T> &, V, int, int);
+    template<class T,class V>
+    void addscaled(colib::narray<T> &dest,colib::narray<T> &src,
+            V scale=1,int dx=0,int dy=0);
+
     template<class T>
     void tighten(colib::narray<T> &image);
     template<class T>

@@ -133,11 +133,12 @@ namespace iulib {
 
     template<class T,class V>
     void addscaled(narray<T> &dest,narray<T> &src,
-            V scale=1,int dx=0,int dy=0) {
+            V scale,int dx,int dy) {
         for (int i=0; i<dest.dim(0); i++)
             for (int j=0; j<dest.dim(1); j++)
                 dest.unsafe_at(i,j) += (T)(scale*xref(src,i+dx,j+dy));
     }
+
     template void addscaled(bytearray &,bytearray &,float,int,int);
     template void addscaled(intarray &,intarray &,float,int,int);
     template void addscaled(floatarray &,floatarray &,float,int,int);
