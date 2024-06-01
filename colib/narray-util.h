@@ -444,7 +444,7 @@ namespace colib {
     template<class T,class U,class V>
     bool contains_only(narray<T> &a, U value1, V value2) {
         for(int i = 0; i < a.length1d(); i++) {
-            if(a.at1d(i) != value1 && a.at1d(i) != value2)
+            if (a.at1d(i) != static_cast<T>(value1) && a.at1d(i) != static_cast<T>(value2))
                 return false;
         }
         return true;
