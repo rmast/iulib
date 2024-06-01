@@ -33,8 +33,8 @@ namespace iulib {
     void complement(colib::bytearray &image);
     void difference(colib::bytearray &image, colib::bytearray &image2, int dx, int dy);
     int maxdifference(colib::bytearray &image, colib::bytearray &image2, int cx, int cy);
-    void minshift(colib::bytearray &image, colib::bytearray &image2, int dx, int dy, byte offset=0);
-    void maxshift(colib::bytearray &image, colib::bytearray &image2, int dx, int dy, byte offset=0);
+    void minshift(colib::bytearray &image, colib::bytearray &image2, int dx, int dy, narray_byte offset=0);
+    void maxshift(colib::bytearray &image, colib::bytearray &image2, int dx, int dy, narray_byte offset=0);
     void gray_erode(colib::bytearray &image, colib::bytearray &mask, int cx, int cy);
     void gray_dilate(colib::bytearray &image, colib::bytearray &mask, int cx, int cy);
     void gray_open(colib::bytearray &image, colib::bytearray &mask, int cx, int cy);

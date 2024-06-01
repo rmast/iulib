@@ -195,7 +195,7 @@ void numpy_of_narray(PyObject *,floatarray &);
 // narray.h
 ////////////////////////////////////////////////////////////////
 
-typedef unsigned char byte;
+typedef unsigned char narray_byte;
 
 template <class T>
 class narray {
@@ -255,12 +255,12 @@ class narray {
 typedef narray<float> floatarray;
 %template(intarray) narray<int>;
 typedef narray<int> intarray;
-%template(bytearray) narray<byte>;
-typedef narray<byte> bytearray;
+%template(bytearray) narray<narray_byte>;
+typedef narray<narray_byte> bytearray;
 %template(shortarray) narray<short>;
 typedef narray<short> shortarray;
 
-%extend narray<byte> {
+%extend narray<narray_byte> {
 #ifdef SWIGPYTHON
     %cstring_output_allocate_size(char **s,int *slen,free(*$1));
     void tostring(char **s,int *slen) {
@@ -276,7 +276,7 @@ typedef narray<short> shortarray;
     }
 
     //extend the operators from narray-ops.h here
-    bytearray &operator+=(byte x) {
+    bytearray &operator+=(narray_byte x) {
         ::operator+=(*$self, x);
         return *$self;
     }
@@ -284,7 +284,7 @@ typedef narray<short> shortarray;
         ::operator+=(*$self, x);
         return *$self;
     }
-    bytearray &operator-=(byte x) {
+    bytearray &operator-=(narray_byte x) {
         ::operator-=(*$self, x);
         return *$self;
     }
@@ -292,7 +292,7 @@ typedef narray<short> shortarray;
         ::operator-=(*$self, x);
         return *$self;
     }
-    bytearray &operator*=(byte x) {
+    bytearray &operator*=(narray_byte x) {
         ::operator*=(*$self, x);
         return *$self;
     }
@@ -300,7 +300,7 @@ typedef narray<short> shortarray;
         ::operator*=(*$self, x);
         return *$self;
     }
-    bytearray &operator/=(byte x) {
+    bytearray &operator/=(narray_byte x) {
         ::operator/=(*$self, x);
         return *$self;
     }
@@ -565,36 +565,36 @@ public:
 template <class T> T absmax(narray<T> &);
 %template(absmax) absmax<float>;
 %template(absmax) absmax<int>;
-%template(absmax) absmax<byte>;
+%template(absmax) absmax<narray_byte>;
 template <class T> T max(narray<T> &);
 %template(max) max<float>;
 %template(max) max<int>;
-%template(max) max<byte>;
+%template(max) max<narray_byte>;
 template <class T> T min(narray<T> &);
 %template(min) min<float>;
 %template(min) min<int>;
-%template(min) min<byte>;
+%template(min) min<narray_byte>;
 template <class T> double sum(narray<T> &);
 %template(sum) sum<float>;
 %template(sum) sum<int>;
-%template(sum) sum<byte>;
+%template(sum) sum<narray_byte>;
 template <class T> double product(narray<T> &);
 %template(product) product<float>;
 %template(product) product<int>;
-%template(product) product<byte>;
+%template(product) product<narray_byte>;
 template <class T> int argmax(narray<T> &);
 %template(argmax) argmax<float>;
 %template(argmax) argmax<int>;
-%template(argmax) argmax<byte>;
+%template(argmax) argmax<narray_byte>;
 template <class T> int argmin(narray<T> &);
 %template(argmin) argmin<float>;
 %template(argmin) argmin<int>;
-%template(argmin) argmin<byte>;
+%template(argmin) argmin<narray_byte>;
 void make_unit_vector(floatarray &,int ,int );
 template <class T> void randomly_permute(narray<T> &);
 %template(randomly_permute) randomly_permute<float>;
 %template(randomly_permute) randomly_permute<int>;
-%template(randomly_permute) randomly_permute<byte>;
+%template(randomly_permute) randomly_permute<narray_byte>;
 double dist2(floatarray &,floatarray &);
 double norm2(floatarray &);
 void normalize2(floatarray &);
@@ -605,87 +605,87 @@ void perturb(floatarray &,float );
 template <class T> void iota(narray<T> &,int );
 %template(iota) iota<float>;
 %template(iota) iota<int>;
-%template(iota) iota<byte>;
+%template(iota) iota<narray_byte>;
 template <class T> void reverse(narray<T> &);
 %template(reverse) reverse<float>;
 %template(reverse) reverse<int>;
-%template(reverse) reverse<byte>;
+%template(reverse) reverse<narray_byte>;
 template <class T> void reverse(narray<T> &,narray<T> &);
 %template(reverse) reverse<float>;
 %template(reverse) reverse<int>;
-%template(reverse) reverse<byte>;
+%template(reverse) reverse<narray_byte>;
 template <class T> void remove_left(narray<T> &,int);
 %template(remove_left) remove_left<float>;
 %template(remove_left) remove_left<int>;
-%template(remove_left) remove_left<byte>;
+%template(remove_left) remove_left<narray_byte>;
 template <class T>  void addscaled(narray<T> &,narray<T> &,double );
 %template(addscaled) addscaled<float>;
 %template(addscaled) addscaled<int>;
-%template(addscaled) addscaled<byte>;
+%template(addscaled) addscaled<narray_byte>;
 template <class T> T ext(narray<T> &,int );
 %template(ext) ext<float>;
 %template(ext) ext<int>;
-%template(ext) ext<byte>;
+%template(ext) ext<narray_byte>;
 template <class T> T ext(narray<T> &,int,int );
 %template(ext) ext<float>;
 %template(ext) ext<int>;
-%template(ext) ext<byte>;
+%template(ext) ext<narray_byte>;
 template <class T,class U> T bat(narray<T> &, int, U);
 %template(bat) bat<float,float>;
 %template(bat) bat<int,int>;
-%template(bat) bat<byte,byte>;
+%template(bat) bat<narray_byte,narray_byte>;
 template <class T,class U> T bat(narray<T> &, int ,int, U);
 %template(bat) bat<float,float>;
 %template(bat) bat<int,int>;
-%template(bat) bat<byte,byte>;
+%template(bat) bat<narray_byte,narray_byte>;
 template <class T> void remove_element(narray<T> &,int);
 %template(remove_element) remove_element<float>;
 %template(remove_element) remove_element<int>;
-%template(remove_element) remove_element<byte>;
+%template(remove_element) remove_element<narray_byte>;
 template <class T,class S> void remove_value(narray<T> &,S );
 %template(remove_value) remove_value<int,int>;
 /*%template(remove_value) remove_value<float,float>;
-%template(remove_value) remove_value<byte,byte>;*/ //these two are not defined
+%template(remove_value) remove_value<narray_byte,narray_byte>;*/ //these two are not defined
 template <class T,class S> int first_index_of(narray<T> &,S );
 %template(first_index_of) first_index_of<float,float>;
 %template(first_index_of) first_index_of<int,int>;
-%template(first_index_of) first_index_of<byte,byte>;
+%template(first_index_of) first_index_of<narray_byte,narray_byte>;
 template <class T> static void insert_at(narray<T> &,int );
 %template(insert_at) insert_at<float>;
 %template(insert_at) insert_at<int>;
-%template(insert_at) insert_at<byte>;
+%template(insert_at) insert_at<narray_byte>;
 template <class T> static void delete_at(narray<T> &,int );
 %template(delete_at) delete_at<float>;
 %template(delete_at) delete_at<int>;
-%template(delete_at) delete_at<byte>;
+%template(delete_at) delete_at<narray_byte>;
 template <class T> static void insert_at(narray<T> &,int,T );
 %template(insert_at) insert_at<float>;
 %template(insert_at) insert_at<int>;
-%template(insert_at) insert_at<byte>;
+%template(insert_at) insert_at<narray_byte>;
 template <class T> T clamp(T ,T ,T );
 %template(clamp) clamp<float>;
 %template(clamp) clamp<int>;
-%template(clamp) clamp<byte>;
+%template(clamp) clamp<narray_byte>;
 template <class T,class U> void clampscale(narray<T> &,narray<U> &,T ,T );
 %template(clampscale) clampscale<float,float>;
 %template(clampscale) clampscale<int,int>;
-%template(clampscale) clampscale<byte,byte>;
+%template(clampscale) clampscale<narray_byte,narray_byte>;
 template<class T,class U> bool contains_only(narray<T> &, U);
 %template(contains_only) contains_only<float,float>;
 %template(contains_only) contains_only<int,int>;
-%template(contains_only) contains_only<byte,byte>;
+%template(contains_only) contains_only<narray_byte,narray_byte>;
 template<class T,class U,class V> bool contains_only(narray<T> &, U,V);
 %template(contains_only) contains_only<float,float,float>;
 %template(contains_only) contains_only<int,int,int>;
-%template(contains_only) contains_only<byte,byte,byte>;
+%template(contains_only) contains_only<narray_byte,narray_byte,narray_byte>;
 template<class T> void get_dims(intarray &, narray<T> &);
 %template(get_dims) get_dims<float>;
 %template(get_dims) get_dims<int>;
-%template(get_dims) get_dims<byte>;
+%template(get_dims) get_dims<narray_byte>;
 template<class T> void set_dims(narray<T> &, intarray &);
 %template(set_dims) set_dims<float>;
 %template(set_dims) set_dims<int>;
-%template(set_dims) set_dims<byte>;
+%template(set_dims) set_dims<narray_byte>;
 
 ////////////////////////////////////////////////////////////////
 // narray-ops.h
@@ -697,7 +697,7 @@ template <class T,class S> void add(narray<T> &,S);
 template <class T,class S> void add(narray<T> &,narray<S> &);
 %template(add) add<float,float>;
 %template(add) add<int,int>;
-%template(add) add<byte,byte>;
+%template(add) add<narray_byte,narray_byte>;
 
 template <class T,class S> void sub(narray<T> &,S );
 template <class T,class S> void sub(S ,narray<T> &);
@@ -705,14 +705,14 @@ template <class T,class S> void sub(narray<T> &,narray<S> &);
 template <class T,class S> void sub(narray<T> &,narray<S> &,narray<S> &);
 %template(sub) sub<float,float>;
 %template(sub) sub<int,int>;
-%template(sub) sub<byte,byte>;
+%template(sub) sub<narray_byte,narray_byte>;
 
 template <class T,class S> void mul(narray<T> &,S);
 template <class T,class S> void mul(narray<T> &,narray<S> &);
 template <class T,class S> void mul(narray<T> &,narray<S> &,narray<S> &);
 %template(mul) mul<float,float>;
 %template(mul) mul<int,int>;
-%template(mul) mul<byte,byte>;
+%template(mul) mul<narray_byte,narray_byte>;
 
 template <class T,class S> void div(narray<T> &,S);
 template <class T,class S> void div(S,narray<T> &);
@@ -720,46 +720,46 @@ template <class T,class S> void div(narray<T> &,narray<S> &);
 template <class T,class S> void div(narray<T> &,narray<S> &,narray<S> &);
 %template(div) div<float,float>;
 %template(div) div<int,int>;
-%template(div) div<byte,byte>;
+%template(div) div<narray_byte,narray_byte>;
 
 template <class T,class S> void mod(narray<T> &,S);
 template <class T,class S> void mod(S,narray<T> &);
 template <class T,class S> void mod(narray<T> &,narray<S> &);
 template <class T,class S> void mod(narray<T> &,narray<S> &,narray<S> &);
 %template(mod) mod<int,int>;
-%template(mod) mod<byte,byte>;
+%template(mod) mod<narray_byte,narray_byte>;
 
 template <class T,class S> void pow(narray<T> &,S);
 template <class T,class S> void pow(narray<T> &,narray<S> &);
 %template(pow) pow<float,float>;
 %template(pow) pow<int,int>;
-%template(pow) pow<byte,byte>;
+%template(pow) pow<narray_byte,narray_byte>;
 
 // bit operations
 
 template <class T,class S> void bits_and(narray<T> &,S);
 template <class T,class S> void bits_and(narray<T> &,narray<S> &);
-%template(bits_and) bits_and<byte,byte>;
+%template(bits_and) bits_and<narray_byte,narray_byte>;
 %template(bits_and) bits_and<int,int>;
 
 template <class T,class S> void bits_or(narray<T> &,S);
 template <class T,class S> void bits_or(narray<T> &,narray<S> &);
-%template(bits_or) bits_or<byte,byte>;
+%template(bits_or) bits_or<narray_byte,narray_byte>;
 %template(bits_or) bits_or<int,int>;
 
 template <class T,class S> void bits_xor(narray<T> &,S);
 template <class T,class S> void bits_xor(narray<T> &,narray<S> &);
-%template(bits_xor) bits_xor<byte,byte>;
+%template(bits_xor) bits_xor<narray_byte,narray_byte>;
 %template(bits_xor) bits_xor<int,int>;
 
 template <class T,class S> void bits_lshift(narray<T> &,S);
 template <class T,class S> void bits_lshift(narray<T> &,narray<S> &);
-%template(bits_lshift) bits_lshift<byte,byte>;
+%template(bits_lshift) bits_lshift<narray_byte,narray_byte>;
 %template(bits_lshift) bits_lshift<int,int>;
 
 template <class T,class S> void bits_rshift(narray<T> &,S);
 template <class T,class S> void bits_rshift(narray<T> &,narray<S> &);
-%template(bits_rshift) bits_rshift<byte,int>;
+%template(bits_rshift) bits_rshift<narray_byte,int>;
 %template(bits_rshift) bits_rshift<int,int>;
 
 // min/max
@@ -768,24 +768,24 @@ template <class T,class S> void max(narray<T> &,S );
 template <class T,class S> void max(narray<T> &out,narray<S> &);
 %template(max) max<float,float>;
 %template(max) max<int,int>;
-%template(max) max<byte,byte>;
+%template(max) max<narray_byte,narray_byte>;
 
 template <class T,class S> void min(narray<T> &,S );
 template <class T,class S> void min(narray<T> &out,narray<S> &);
 %template(min) min<float,float>;
 %template(min) min<int,int>;
-%template(min) min<byte,byte>;
+%template(min) min<narray_byte,narray_byte>;
 
 #if 0
 %template <class T,class S,class R> void greater(narray<T> &, S ,R ,R );
 %template(greater) greater<float,float,float>;
 %template(greater) greater<int,int,int>;
-%template(greater) greater<byte,byte,byte>;
+%template(greater) greater<narray_byte,narray_byte,narray_byte>;
 
 template <class T,class S,class R> void less(narray<T> &, S ,R ,R );
 %template(less) less<float,float,float>;
 %template(less) less<int,int,int>;
-%template(less) less<byte,byte,byte>;
+%template(less) less<narray_byte,narray_byte,narray_byte>;
 #endif
 
 // more arithmetic operations
@@ -793,32 +793,32 @@ template <class T,class S,class R> void less(narray<T> &, S ,R ,R );
 template <class T> void neg(narray<T> &);
 %template(neg) neg<float>;
 %template(neg) neg<int>;
-%template(neg) neg<byte>;
+%template(neg) neg<narray_byte>;
 
 template <class T> void abs(narray<T> &);
 %template(abs) abs<float>;
 %template(abs) abs<int>;
-%template(abs) abs<byte>;
+%template(abs) abs<narray_byte>;
 
 template <class T> void log(narray<T> &);
 %template(log) log<float>;
 %template(log) log<int>;
-%template(log) log<byte>;
+%template(log) log<narray_byte>;
 
 template <class T> void exp(narray<T> &);
 %template(exp) exp<float>;
 %template(exp) exp<int>;
-%template(exp) exp<byte>;
+%template(exp) exp<narray_byte>;
 
 template <class T> void sin(narray<T> &);
 %template(sin) sin<float>;
 %template(sin) sin<int>;
-%template(sin) sin<byte>;
+%template(sin) sin<narray_byte>;
 
 template <class T> void cos(narray<T> &);
 %template(cos) cos<float>;
 %template(cos) cos<int>;
-%template(cos) cos<byte>;
+%template(cos) cos<narray_byte>;
 
 ////////////////////////////////////////////////////////////////
 // nustring.h
@@ -1065,13 +1065,13 @@ void median_filter(bytearray &image, int rx, int ry);
 
 template<class T> void gauss1d(narray<T> &out, narray<T> &in, float sigma);
 %template(gauss1d) gauss1d<float>;
-%template(gauss1d) gauss1d<byte>;
+%template(gauss1d) gauss1d<narray_byte>;
 template<class T> void gauss1d(narray<T> &v, float sigma);
 %template(gauss1d) gauss1d<float>;
-%template(gauss1d) gauss1d<byte>;
+%template(gauss1d) gauss1d<narray_byte>;
 template<class T> void gauss2d(narray<T> &a, float sx, float sy);
 %template(gauss2d) gauss2d<float>;
-%template(gauss2d) gauss2d<byte>;
+%template(gauss2d) gauss2d<narray_byte>;
 
 ////////////////////////////////////////////////////////////////
 // imggraymorph.h
@@ -1080,8 +1080,8 @@ template<class T> void gauss2d(narray<T> &a, float sx, float sy);
 void complement(bytearray &image);
 void difference(bytearray &image, bytearray &image2, int dx, int dy);
 int maxdifference(bytearray &image, bytearray &image2, int cx, int cy);
-void minshift(bytearray &image, bytearray &image2, int dx, int dy, byte offset=0);
-void maxshift(bytearray &image, bytearray &image2, int dx, int dy, byte offset=0);
+void minshift(bytearray &image, bytearray &image2, int dx, int dy, narray_byte offset=0);
+void maxshift(bytearray &image, bytearray &image2, int dx, int dy, narray_byte offset=0);
 void gray_erode(bytearray &image, bytearray &mask, int cx, int cy);
 void gray_dilate(bytearray &image, bytearray &mask, int cx, int cy);
 void gray_open(bytearray &image, bytearray &mask, int cx, int cy);
@@ -1108,24 +1108,24 @@ int interesting_colors(int x);
 template<class T> void rotate_direct_sample(narray<T> &out, narray<T> &in, float angle, float cx, float cy);
 %template(rotate_direct_sample) rotate_direct_sample<float>;
 %template(rotate_direct_sample) rotate_direct_sample<int>;
-%template(rotate_direct_sample) rotate_direct_sample<byte>;
+%template(rotate_direct_sample) rotate_direct_sample<narray_byte>;
 
 template<class T> void rotate_direct_interpolate(narray<T> &out,narray<T> &in, float angle, float cx, float cy);
 %template(rotate_direct_interpolate) rotate_direct_interpolate<float>;
 %template(rotate_direct_interpolate) rotate_direct_interpolate<int>;
-%template(rotate_direct_interpolate) rotate_direct_interpolate<byte>;
+%template(rotate_direct_interpolate) rotate_direct_interpolate<narray_byte>;
 
 template<class T> void scale_sample(narray<T> &out, narray<T> &in,float sx, float sy);
 template<class T> void scale_sample(narray<T> &out,narray<T> &in, int nx,int ny);
 %template(scale_sample) scale_sample<float>;
 %template(scale_sample) scale_sample<int>;
-%template(scale_sample) scale_sample<byte>;
+%template(scale_sample) scale_sample<narray_byte>;
 
 template<class T> void scale_interpolate(narray<T> &out, narray<T> &in,float sx, float sy);
 template<class T> void scale_interpolate(narray<T> &out, narray<T> &in,int nx, int ny);
 %template(scale_interpolate) scale_interpolate<float>;
 %template(scale_interpolate) scale_interpolate<int>;
-%template(scale_interpolate) scale_interpolate<byte>;
+%template(scale_interpolate) scale_interpolate<narray_byte>;
 
 ////////////////////////////////////////////////////////////////
 // imgmorph.h
@@ -1156,27 +1156,27 @@ void binary_close_rect(bytearray &image, int rw, int rh);
 //%include <iulib/imgops.h>
 template<class T, class S> void getd0(narray<T> &image, narray<S> &slice, int index);
 %template(getd0) getd0<float,float>;
-%template(getd0) getd0<float,byte>;
-%template(getd0) getd0<byte,float>;
-%template(getd0) getd0<byte,byte>;
+%template(getd0) getd0<float,narray_byte>;
+%template(getd0) getd0<narray_byte,float>;
+%template(getd0) getd0<narray_byte,narray_byte>;
 
 template<class T, class S> void getd1(narray<T> &image, narray<S> &slice, int index);
 %template(getd1) getd1<float,float>;
-%template(getd1) getd1<float,byte>;
-%template(getd1) getd1<byte,float>;
-%template(getd1) getd1<byte,byte>;
+%template(getd1) getd1<float,narray_byte>;
+%template(getd1) getd1<narray_byte,float>;
+%template(getd1) getd1<narray_byte,narray_byte>;
 
 template<class T, class S> void putd0(narray<T> &image, narray<S> &slice, int index);
 %template(putd0) putd0<float,float>;
-%template(putd0) putd0<float,byte>;
-%template(putd0) putd0<byte,float>;
-%template(putd0) putd0<byte,byte>;
+%template(putd0) putd0<float,narray_byte>;
+%template(putd0) putd0<narray_byte,float>;
+%template(putd0) putd0<narray_byte,narray_byte>;
 
 template<class T, class S> void putd1(narray<T> &image, narray<S> &slice, int index);
 %template(putd1) putd1<float,float>;
-%template(putd1) putd1<float,byte>;
-%template(putd1) putd1<byte,float>;
-%template(putd1) putd1<byte,byte>;
+%template(putd1) putd1<float,narray_byte>;
+%template(putd1) putd1<narray_byte,float>;
+%template(putd1) putd1<narray_byte,narray_byte>;
 
 float gradx(floatarray &image, int x, int y);
 float grady(floatarray &image, int x, int y);
@@ -1187,92 +1187,92 @@ float gradang(floatarray &image, int x, int y);
 template<class T>  T xref(narray<T> &a, int x, int y);
 %template(xref) xref<float>;
 %template(xref) xref<int>;
-%template(xref) xref<byte>;
+%template(xref) xref<narray_byte>;
 
 template<class T>  T bilin(narray<T> &a, float x, float y);
 %template(bilin) bilin<float>;
 %template(bilin) bilin<int>;
-%template(bilin) bilin<byte>;
+%template(bilin) bilin<narray_byte>;
 
 template<class T, class V> void addscaled(narray<T> &, narray<T> &, V, int, int);
 %template(addscaled) addscaled<float,float>;
 %template(addscaled) addscaled<int,float>;
-%template(addscaled) addscaled<byte,float>;
+%template(addscaled) addscaled<narray_byte,float>;
 
 template<class T> void tighten(narray<T> &image);
 %template(tighten) tighten<float>;
 %template(tighten) tighten<int>;
-%template(tighten) tighten<byte>;
+%template(tighten) tighten<narray_byte>;
 
 template<class T> void circ_by(narray<T> &image, int dx, int dy, T value=0);
 %template(circ_by) circ_by<float>;
 %template(circ_by) circ_by<int>;
-%template(circ_by) circ_by<byte>;
+%template(circ_by) circ_by<narray_byte>;
 
 template<class T> void shift_by(narray<T> &image, int dx, int dy, T value=0);
 %template(shift_by) shift_by<float>;
 %template(shift_by) shift_by<int>;
-%template(shift_by) shift_by<byte>;
+%template(shift_by) shift_by<narray_byte>;
 
 template<class T> void pad_by(narray<T> &image, int px, int py, T value=0);
 %template(pad_by) pad_by<float>;
 %template(pad_by) pad_by<int>;
-%template(pad_by) pad_by<byte>;
+%template(pad_by) pad_by<narray_byte>;
 
 template<class T> void erase_boundary(narray<T> &, int, int, T);
 %template(erase_boundary) erase_boundary<float>;
 %template(erase_boundary) erase_boundary<int>;
-%template(erase_boundary) erase_boundary<byte>;
+%template(erase_boundary) erase_boundary<narray_byte>;
 
 template<class T, class S> void extract_subimage(narray<T> &subimage,narray<S> &image, int x0, int y0, int x1, int y1);
 %template(extract_subimage) extract_subimage<float,float>;
 %template(extract_subimage) extract_subimage<int,int>;
-%template(extract_subimage) extract_subimage<byte,byte>;
-%template(extract_subimage) extract_subimage<byte,float>;
-%template(extract_subimage) extract_subimage<byte,int>;
-%template(extract_subimage) extract_subimage<int,byte>;
+%template(extract_subimage) extract_subimage<narray_byte,narray_byte>;
+%template(extract_subimage) extract_subimage<narray_byte,float>;
+%template(extract_subimage) extract_subimage<narray_byte,int>;
+%template(extract_subimage) extract_subimage<int,narray_byte>;
 %template(extract_subimage) extract_subimage<int,float>;
 %template(extract_subimage) extract_subimage<float,int>;
-%template(extract_subimage) extract_subimage<float,byte>;
+%template(extract_subimage) extract_subimage<float,narray_byte>;
 
 template<class T, class S,class U> void extract_bat(narray<T> &subimage,narray<S> &image, int x0, int y0, int x1, int y1,U dflt);
 %template(extract_bat) extract_bat<float,float,float>;
 %template(extract_bat) extract_bat<int,int,int>;
-%template(extract_bat) extract_bat<byte,byte,int>;
-%template(extract_bat) extract_bat<byte,float,float>;
-%template(extract_bat) extract_bat<byte,int,int>;
-%template(extract_bat) extract_bat<int,byte,int>;
+%template(extract_bat) extract_bat<narray_byte,narray_byte,int>;
+%template(extract_bat) extract_bat<narray_byte,float,float>;
+%template(extract_bat) extract_bat<narray_byte,int,int>;
+%template(extract_bat) extract_bat<int,narray_byte,int>;
 %template(extract_bat) extract_bat<int,float,float>;
 %template(extract_bat) extract_bat<float,int,int>;
-%template(extract_bat) extract_bat<float,byte,int>;
+%template(extract_bat) extract_bat<float,narray_byte,int>;
 
 template<class T> void resize_to(narray<T> &image, int w, int h, T value=0);
 %template(resize_to) resize_to<float>;
 %template(resize_to) resize_to<int>;
-%template(resize_to) resize_to<byte>;
+%template(resize_to) resize_to<narray_byte>;
 
 void compose_at(bytearray &image, bytearray &source, int x, int y,int value, int conflict);
 
 template<class T, class U, class V, class W> void ifelse(narray<T> &dest,narray<U> &cond, narray<V> &iftrue, narray<W> &iffalse);
 %template(ifelse) ifelse<float,float,float,float>;
-%template(ifelse) ifelse<float,byte,float,float>;
-%template(ifelse) ifelse<byte,byte,byte,byte>;
+%template(ifelse) ifelse<float,narray_byte,float,float>;
+%template(ifelse) ifelse<narray_byte,narray_byte,narray_byte,narray_byte>;
 
 void blend(floatarray &dest, floatarray &cond, floatarray &iftrue,floatarray &iffalse);
 template<class T> void linearly_transform_intensity(narray<T> &image,float m, float b, float lo, float hi);
 %template(linearly_transform_intensity) linearly_transform_intensity<float>;
 %template(linearly_transform_intensity) linearly_transform_intensity<int>;
-%template(linearly_transform_intensity) linearly_transform_intensity<byte>;
+%template(linearly_transform_intensity) linearly_transform_intensity<narray_byte>;
 
 template<class T> void gamma_transform(narray<T> &image, float gamma,float c, float lo, float hi);
 %template(gamma_transform) gamma_transform<float>;
 %template(gamma_transform) gamma_transform<int>;
-%template(gamma_transform) gamma_transform<byte>;
+%template(gamma_transform) gamma_transform<narray_byte>;
 
 template<class T> void expand_range(narray<T> &image, float lo, float hi);
 %template(expand_range) expand_range<float>;
 %template(expand_range) expand_range<int>;
-%template(expand_range) expand_range<byte>;
+%template(expand_range) expand_range<narray_byte>;
 
 ////////////////////////////////////////////////////////////////
 // imgmisc.h
@@ -1282,42 +1282,42 @@ void valleys(intarray &locations,floatarray &v, int minsize=0,int maxsize=1<<30,
 void peaks(intarray &locations, floatarray &v, int minsize=0, int maxsize=1<<30, float sigma=0.0);
 void hist(floatarray &hist, bytearray &image);
 template <class T> void split_rgb(narray<T> &r,narray<T> &g,narray<T> &b,narray<T> &rgb);
-%template(split_rgb) split_rgb<byte>;
+%template(split_rgb) split_rgb<narray_byte>;
 %template(split_rgb) split_rgb<int>;
 %template(split_rgb) split_rgb<float>;
 template <class T> void combine_rgb(narray<T> &rgb,narray<T> &r,narray<T> &g,narray<T> &b);
-%template(combine_rgb) combine_rgb<byte>;
+%template(combine_rgb) combine_rgb<narray_byte>;
 %template(combine_rgb) combine_rgb<int>;
 %template(combine_rgb) combine_rgb<float>;
 void unpack_rgb(bytearray &r,bytearray &g,bytearray &b,intarray &rgb);
 void pack_rgb(intarray &rgb,bytearray &r,bytearray &g,bytearray &b);
 template<class T> void fill_rect(narray<T> &out,int x0,int y0,int x1,int y1,T value);
 template<class T> void fill_rect(narray<T> &out,rectangle r,T value);
-%template(fill_rect) fill_rect<byte>;
+%template(fill_rect) fill_rect<narray_byte>;
 %template(fill_rect) fill_rect<int>;
 %template(fill_rect) fill_rect<float>;
 template<class T> void math2raster(narray<T> &out, narray<T> &in);
 template<class T> void raster2math(narray<T> &out, narray<T> &in);
 template<class T> void math2raster(narray<T> &out);
 template<class T> void raster2math(narray<T> &out);
-%template(math2raster) math2raster<byte>;
+%template(math2raster) math2raster<narray_byte>;
 %template(math2raster) math2raster<int>;
 %template(math2raster) math2raster<float>;
-%template(raster2math) raster2math<byte>;
+%template(raster2math) raster2math<narray_byte>;
 %template(raster2math) raster2math<int>;
 %template(raster2math) raster2math<float>;
 template<class T> void crop(narray<T> &result, narray<T> &source,int x, int y, int w, int h);
 template<class T> void crop(narray<T> &result, narray<T> &source, rectangle r) ;
 template<class T> void crop(narray<T> &a, rectangle box) ;
-%template(crop) crop<byte>;
+%template(crop) crop<narray_byte>;
 %template(crop) crop<int>;
 %template(crop) crop<float>;
 template<class T> void transpose(narray<T> &a) ;
-%template(transpose) transpose<byte>;
+%template(transpose) transpose<narray_byte>;
 %template(transpose) transpose<int>;
 %template(transpose) transpose<float>;
 template<class T> void replace_values(narray<T> &a, T from, T to) ;
-%template(replace_values) replace_values<byte>;
+%template(replace_values) replace_values<narray_byte>;
 %template(replace_values) replace_values<int>;
 %template(replace_values) replace_values<float>;
 void binarize_by_threshold(bytearray &image);

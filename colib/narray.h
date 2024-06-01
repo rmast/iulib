@@ -668,7 +668,7 @@ namespace colib {
         }
     };
 
-    typedef unsigned char byte;
+    typedef unsigned char narray_byte;
     typedef narray<unsigned char> bytearray;
     typedef narray<short> shortarray;
     typedef narray<int> intarray;

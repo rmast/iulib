@@ -226,7 +226,7 @@ namespace iulib {
             else if (c.at1d(i) > 255)
                 a.at1d(i) = 255;
             else
-                a.at1d(i) = byte(c.at1d(i));
+                a.at1d(i) = narray_byte(c.at1d(i));
         }
     }
 
