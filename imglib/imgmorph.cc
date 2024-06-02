@@ -36,7 +36,7 @@ using namespace colib;
 
 namespace iulib {
 
-    inline byte bc(int c) {
+    inline colib::byte bc(int c) {
         if(c<0)
             return 0;
         if(c>255)

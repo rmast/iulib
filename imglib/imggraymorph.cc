@@ -35,7 +35,7 @@ using namespace colib;
 
 namespace iulib {
 
-    inline byte bc(int c) {
+    inline colib::byte bc(int c) {
         if (c<0)
             return 0;
         if (c>255)
@@ -71,7 +71,7 @@ namespace iulib {
     }
 
     void minshift(bytearray &image, bytearray &image2, int dx, int dy,
-            byte offset) {
+            colib::byte offset) {
         int w = image.dim(0);
         int h = image.dim(1);
         for (int i=0; i<w; i++)
@@ -82,7 +82,7 @@ namespace iulib {
     }
 
     void maxshift(bytearray &image, bytearray &image2, int dx, int dy,
-            byte offset) {
+            colib::byte offset) {
         int w = image.dim(0);
         int h = image.dim(1);
         for (int i=0; i<w; i++)
@@ -97,7 +97,7 @@ namespace iulib {
         copy(out, image);
         for (int i=0; i<mask.dim(0); i++)
             for (int j=0; j<mask.dim(1); j++) {
-                byte value = mask(i, j);
+                colib::byte value = mask(i, j);
                 if (value)
                     minshift(out, image, i-cx, j-cy, value);
             }
@@ -109,7 +109,7 @@ namespace iulib {
         copy(out, image);
         for (int i=0; i<mask.dim(0); i++)
             for (int j=0; j<mask.dim(1); j++) {
-                byte value = mask(i, j);
+                colib::byte value = mask(i, j);
                 if (value)
                     maxshift(out, image, i-cx, j-cy, value);
             }

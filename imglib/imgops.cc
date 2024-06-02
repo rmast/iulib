@@ -188,7 +188,7 @@ namespace iulib {
         }
         move(image,temp);
     }
-    template void shift_by(bytearray &,int,int,byte);
+    template void shift_by(bytearray &,int,int,colib::byte);
     template void shift_by(intarray &,int,int,int);
     template void shift_by(floatarray &,int,int,float);
 
@@ -206,7 +206,7 @@ namespace iulib {
         }
         move(image,temp);
     }
-    template void circ_by(bytearray &,int,int,byte);
+    template void circ_by(bytearray &,int,int,colib::byte);
     template void circ_by(intarray &,int,int,int);
     template void circ_by(floatarray &,int,int,float);
 
@@ -226,7 +226,7 @@ namespace iulib {
         }
         move(image,temp);
     }
-    template void pad_by(bytearray &,int,int,byte);
+    template void pad_by(bytearray &,int,int,colib::byte);
     template void pad_by(intarray &,int,int,int);
     template void pad_by(floatarray &,int,int,float);
 
@@ -247,7 +247,7 @@ namespace iulib {
         }
     }
 
-    template void erase_boundary(bytearray &,int,int,byte);
+    template void erase_boundary(bytearray &,int,int,colib::byte);
     template void erase_boundary(intarray &,int,int,int);
     template void erase_boundary(floatarray &,int,int,float);
 
@@ -268,7 +268,7 @@ namespace iulib {
         }
         move(image,temp);
     }
-    template void resize_to(bytearray &,int,int,byte);
+    template void resize_to(bytearray &,int,int,colib::byte);
     template void resize_to(intarray &,int,int,int);
     template void resize_to(floatarray &,int,int,float);
 
