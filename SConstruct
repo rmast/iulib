@@ -36,7 +36,7 @@ import glob,os,sys,string,re
 
 ### Options exposed via SCons
 opts = Variables('custom.py')
-opts.Add('opt', 'Compiler flags for optimization/debugging', "-g -O3 -fPIC")
+opts.Add('opt', 'Compiler flags for optimization/debugging', "-g -O0 -fPIC")
 opts.Add('warn', 'Compiler flags for warnings', "-Wall -D__warn_unused_result__=__far__")
 opts.Add('prefix', 'The installation root for iulib', "/usr/local")
 
@@ -120,7 +120,7 @@ else:
 
 libiulib = env.SharedLibrary('libiulib',sources)
 
-env.Append(CXXFLAGS=['-g','-fPIC'])
+env.Append(CXXFLAGS=['-g','-fPIC','-O0'])
 env.Append(LIBPATH=['.'])
 progs = env.Clone()
 progs.Append(LIBS=libiulib)
